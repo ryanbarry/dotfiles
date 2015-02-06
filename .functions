@@ -37,10 +37,18 @@ function ssh-copy-id() {
 
 # control philips hue lights brightness and color temp
 function hueon() {
-  BRI=$1
-  CT=$2
+  if [ $# -lt 1 ]; then
+    BRI=120
+  else
+    BRI=$1
+  fi
+  if [ $# -lt 2 ]; then
+    CT=""
+  else
+    CT=" \"ct\": $(( 1000000/$2 )),"
+  fi
   API_URL="http://`dig @10.0.1.254 philips-hue A +short`/api/newdeveloper/groups/1/action"
-  curl -XPUT -d "{ \"on\": true, \"ct\": $(( 1000000/${CT} )), \"bri\": $BRI }" $API_URL
+  curl -XPUT -d "{ \"on\": true,$CT \"bri\": $BRI }" $API_URL
   echo
 }
 
