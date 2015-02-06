@@ -48,11 +48,9 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # Shortcuts
 alias g="git"
-alias v="vim"
 alias o="open ."
-alias e='open -a Emacs'
-alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n'
-alias ew='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+alias ec='emacsclient -nc'
+alias ew='emacsclient'
 
 # File size
 alias fs="stat -f \"%z bytes\""
