@@ -5,9 +5,9 @@ for file in ~/.{extra,bash_prompt,exports,aliases,functions,profile}; do
 done
 unset file
 
-if [ -r "$HOME/.nvm/nvm.sh" ]; then
-  source ~/.nvm/nvm.sh # load node version manager
-fi
+# node version manager
+NVM_INSTALL_DIR=$(brew --prefix nvm)
+[[ -s $NVM_INSTALL_DIR/nvm.sh ]] && source $NVM_INSTALL_DIR/nvm.sh
 
 export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
 
