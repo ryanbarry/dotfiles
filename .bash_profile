@@ -6,7 +6,7 @@ done
 unset file
 
 # node version manager
-NVM_INSTALL_DIR=$(brew --prefix nvm)
+NVM_INSTALL_DIR=$(brew --prefix nvm) && export NVM_DIR=~/.nvm && \
 [[ -s $NVM_INSTALL_DIR/nvm.sh ]] && source $NVM_INSTALL_DIR/nvm.sh
 
 export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
