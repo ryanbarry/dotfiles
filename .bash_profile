@@ -1,35 +1,26 @@
-# Load ~/.extra, ~/.bash_prompt, ~/.exports, ~/.aliases, ~/.functions and ~/.profile
-# ~/.extra can be used for settings you don’t want to commit
-for file in ~/.{extra,bash_prompt,exports,aliases,functions,profile}; do
-  [ -r "$file" ] && source "$file"
-done
-unset file
+# purpose: exports & loading more when actually interactive
 
-# node version manager
-NVM_INSTALL_DIR=$(brew --prefix nvm) && export NVM_DIR=~/.nvm && \
-[[ -s $NVM_INSTALL_DIR/nvm.sh ]] && source $NVM_INSTALL_DIR/nvm.sh
+# Make emacs-in-a-new-frame the default editor
+export EDITOR='emacsclient -c'
 
-export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+# Larger bash history (allow 32³ entries; default is 500)
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
+# Make some commands not show up in history
+export HISTIGNORE="cd:cd -:pwd;exit:date"
 
 # Prefer US English and use UTF-8
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
 
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -r "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
-
-# Add tab completion for `defaults read|write NSGlobalDomain`
-# You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults
-
 export PATH="/Users/rbarry/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 
-# disable XON/XOFF since Ctrl-S is useful for searching forward in bash history
-stty -ixon
-# bind C-w to backward-kill-word so it stops at slashes and spaces (similar to emacs)
-stty werase undef # first have to undefine binding from tty
-bind '"\C-w": backward-kill-word' # now tell bash what to do with the key chord
+# Bash doesn't load its interactive initialization file if it's invoked as
+# a login shell, so do it manually.
+case $- in
+    *i*) if [[ -n "$BASH" ]]; then
+           source .bashrc
+         fi
+esac
