@@ -46,6 +46,7 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 alias g="git"
 alias o="open ."
 alias ec='emacsclient -nc'
+alias en='emacsclient -n'
 alias ew='emacsclient'
 
 # File size

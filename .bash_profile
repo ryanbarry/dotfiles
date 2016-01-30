@@ -1,7 +1,7 @@
 # purpose: exports & loading more when actually interactive
 
 # Make emacs-in-a-new-frame the default editor
-export EDITOR='emacsclient -c'
+export EDITOR='emacsclient'
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
