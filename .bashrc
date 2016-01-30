@@ -2,7 +2,7 @@
 
 # Load ~/.extra, ~/.bash_prompt, ~/.exports, ~/.aliases, ~/.functions and ~/.profile
 # ~/.extra can be used for stuff you don’t want committed to the repo
-for file in ~/.{extra,bash_prompt,exports,aliases,functions,profile}; do
+for file in ~/.{extra,bash_prompt,aliases,functions,profile}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
