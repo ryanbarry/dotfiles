@@ -1,3 +1,14 @@
+# override cd to execute custom stuff when called
+function cd() {
+  builtin cd "$1"
+  if [[ -a ".nvmrc" && -d "$NVM_DIR" ]]; then
+    nvm use
+    if [ $? -eq 1 ]; then
+      nvm install && nvm use
+    fi
+  fi
+}
+
 # Create a new directory and enter it
 function md() {
   mkdir -p "$@" && cd "$@"

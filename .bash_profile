@@ -21,6 +21,6 @@ export PATH="/Users/rbarry/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr
 # a login shell, so do it manually.
 case $- in
     *i*) if [[ -n "$BASH" ]]; then
-           source .bashrc
+           source $HOME/.bashrc
          fi
 esac

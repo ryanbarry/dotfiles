@@ -1,8 +1,8 @@
 # purpose: prepare bash for interactive use
 
 # Load ~/.extra, ~/.bash_prompt, ~/.exports, ~/.aliases, ~/.functions and ~/.profile
-# ~/.extra can be used for settings you don’t want to commit
-for file in ~/.{extra,bash_prompt,aliases,functions,profile}; do
+# ~/.extra can be used for stuff you don’t want committed to the repo
+for file in ~/.{extra,bash_prompt,exports,aliases,functions,profile}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
@@ -36,20 +36,22 @@ bind '"\C-w": backward-kill-word' # now tell bash what to do with the key chord
 
 #PATH=/Users/rbarry/.rbenv/bin:/Users/rbarry/.rbenv/shims:/Users/rbarry/.rvm/gems/ruby-2.0.0-p247/bin:/Users/rbarry/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/rbarry/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/rbarry/.rvm/bin:/Users/rbarry/.nvm/v0.8.26/bin:/usr/local/share/npm/bin:$PATH:/Users/rbarry/android-sdk/tools:/Users/rbarry/android-sdk/platform-tools
 
-source "/usr/local/Cellar/rbenv/0.4.0/libexec/../completions/rbenv.bash"
+if `which rbenv`; then
+  source "/usr/local/Cellar/rbenv/0.4.0/libexec/../completions/rbenv.bash"
 
-rbenv rehash 2>/dev/null
-rbenv() {
-  typeset command
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
+  rbenv rehash 2>/dev/null
+  rbenv() {
+    typeset command
+    command="$1"
+    if [ "$#" -gt 0 ]; then
+      shift
+    fi
 
-  case "$command" in
-  rehash|shell)
-    eval `rbenv "sh-$command" "$@"`;;
-  *)
-    command rbenv "$command" "$@";;
-  esac
-}
+    case "$command" in
+    rehash|shell)
+      eval `rbenv "sh-$command" "$@"`;;
+    *)
+      command rbenv "$command" "$@";;
+    esac
+  }
+fi
