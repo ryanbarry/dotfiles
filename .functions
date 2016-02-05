@@ -2,12 +2,16 @@
 function cd() {
   builtin cd "$1"
   if [[ -a ".nvmrc" && -d "$NVM_DIR" ]]; then
+# override cd when nvm is installed for tighter integration
+if [[ -a ".nvmrc" && -d "$NVM_DIR" ]]; then
+  function cd() {
+    builtin cd "$1"
     nvm use
     if [ $? -eq 1 ]; then
       nvm install && nvm use
     fi
-  fi
-}
+  }
+fi
 
 # Create a new directory and enter it
 function md() {
