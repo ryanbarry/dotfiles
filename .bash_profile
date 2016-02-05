@@ -17,7 +17,7 @@ export HISTIGNORE="cd:cd -:pwd;exit:date"
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
 
-export PATH="/Users/rbarry/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 
 # Bash doesn't load its interactive initialization file if it's invoked as
 # a login shell, so do it manually.
