@@ -1,7 +1,3 @@
-# override cd to execute custom stuff when called
-function cd() {
-  builtin cd "$1"
-  if [[ -a ".nvmrc" && -d "$NVM_DIR" ]]; then
 # override cd when nvm is installed for tighter integration
 if [[ -a ".nvmrc" && -d "$NVM_DIR" ]]; then
   function cd() {
@@ -72,3 +68,4 @@ function hueoff() {
   curl -XPUT -d "{ \"on\": false }" $API_URL
   echo
 }
+
