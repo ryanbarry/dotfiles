@@ -48,6 +48,7 @@ alias o="open ."
 alias ec='emacsclient -nc'
 alias en='emacsclient -n'
 alias ew='emacsclient'
+alias d=docker
 
 # File size
 alias fs="stat -f \"%z bytes\""

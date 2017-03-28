@@ -69,3 +69,8 @@ function hueoff() {
   echo
 }
 
+if [[ -x `which docker` ]]; then
+  function dopy3() {
+    docker run "$@" -it -v `pwd`:/code -w /code python:3-alpine sh
+  }
+fi
