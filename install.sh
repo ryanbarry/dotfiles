@@ -16,7 +16,7 @@ files=`find $dir -type f -depth 1 -name ".*" | xargs basename`
 
 for file in $files; do
   # backup existing version of file, if any
-  if [ -f ~/$file ]; then
+  if [ -f ~/$file ] && [ ! -L ~/$file ]; then
     echo "Moving $file from ~ to $olddir"
     mkdir -p $olddir
     mv ~/$file ~/dotfiles_old/
