@@ -27,9 +27,12 @@ fi
 
 # disable XON/XOFF since Ctrl-S is useful for searching forward in bash history
 stty -ixon
-# bind C-w to backward-kill-word so it stops at slashes and spaces (similar to emacs)
-stty werase undef # first have to undefine binding from tty
-bind '"\C-w": backward-kill-word' # now tell bash what to do with the key chord
+# match my bash Ctrl-Backspace keybinding to spacemacs
+stty werase undef # first undefine werase to help unlearn the old Ctrl-W habit
+bind '"\033[3;5~":backward-kill-word' # now tell bash to map Ctrl-Backspace to the better function (rubout is so lame)
+###
+### NOTE: this requires setup in Terminal.app (namely, adding a key setting in the profile for ctrl-backspace - by default it just sends the same code as backspace)
+###
 
 ####
 ##
