@@ -1,5 +1,8 @@
 # purpose: prepare bash for interactive use
 
+bind 'set show-all-if-ambiguous on'
+#bind 'TAB:menu-complete' # this tries a new completion on each press of tab
+
 # Load ~/.extra, ~/.bash_prompt, ~/.exports, ~/.aliases, ~/.functions and ~/.profile
 # ~/.extra can be used for stuff you don’t want committed to the repo
 for file in ~/.{extra,bash_prompt,aliases,functions,profile}; do
@@ -20,7 +23,7 @@ fi
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults
+#complete -W "NSGlobalDomain" defaults # why? i don't use this. should i?
 
 # disable XON/XOFF since Ctrl-S is useful for searching forward in bash history
 stty -ixon
