@@ -10,7 +10,7 @@ dir=$( cd "$( dirname "$0" )" && pwd )
 # old dotfiles backup directory
 olddir=~/dotfiles_old
 # list of dotfiles to link in home folder
-files=`find $dir -type f -depth 1 -name ".*" | xargs basename`
+files=$( find $dir -type f -depth 1 -name ".*" | xargs basename )
 
 ########## Action
 
