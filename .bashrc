@@ -29,6 +29,7 @@ fi
 stty -ixon
 # match my bash Ctrl-Backspace keybinding to spacemacs
 stty werase undef # first undefine werase to help unlearn the old Ctrl-W habit
+bind -r '\C-w' # unset any bindings on Ctrl-W (default bound to unix-word-rubout)
 bind '"\033[3;5~":backward-kill-word' # now tell bash to map Ctrl-Backspace to the better function (rubout is so lame)
 ###
 ### NOTE: this requires setup in Terminal.app (namely, adding a key setting in the profile for ctrl-backspace - by default it just sends the same code as backspace)
