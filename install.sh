@@ -5,6 +5,8 @@
 
 ########## Variables
 
+set -e
+
 # dotfiles directory
 dir=$( cd "$( dirname "$0" )" && pwd )
 # old dotfiles backup directory
@@ -19,7 +21,7 @@ for file in $files; do
   if [ -f ~/$file ] && [ ! -L ~/$file ]; then
     echo "Moving $file from ~ to $olddir"
     mkdir -p $olddir
-    mv ~/$file ~/dotfiles_old/
+    mv ~/$file $olddir/
   fi
   # symlink to file in this repo
   echo "creating symlink to $file in home directory"
