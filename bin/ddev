@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -ex
+
+if [[ -f $PWD/.ddev ]]; then
+    source $PWD/.ddev
+    # canonicalize path (it's cool to let the user use relative paths)
+    mount_root=$(python -c "import os,sys; print os.path.realpath(sys.argv[1])" ${mount_root})
+fi
+
+if [[ -z ${image} || -z ${mount_root} || -z ${mount_target} ]]; then
+    echo "must set $image, $mount_root and $mount_target to use ddev"
+fi
+
+# want to get the path we'll need to cd into once inside the container, to keep continuity for the user
+# TODO: this is super naïve, using bash string "subtraction"; need more robust method to handle more cases
+virtdir=$mount_target"${PWD#"$mount_root"}"
+
+exec docker run --interactive --tty --rm --volume "${mount_root}:${mount_target}" --workdir "${virtdir}" "${image}"

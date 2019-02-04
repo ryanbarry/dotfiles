@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker run -i --rm -v $HOME/gocode/src/:/go/src -v /private/var/folders:/var/folders ryanbarry/devgo:1.11.5-alpine3.8 goimports $*
