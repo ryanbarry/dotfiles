@@ -26,3 +26,4 @@ exec docker run --interactive --tty --rm --volume "${mount_root}:${mount_target}
       # this is useful for e.g. mounting aws/gcp cli configs/credentials into a container
 # TODO: maybe implement support for defaults or hierarchical configs; e.g. so i don't have to specify the same mount_root and mount_target in every go project on my machine -- but also, how can these be shared? the current model relies upon my local machine's dir layout
 # TODO: auto-detection of language/env used in current dir might be cool, and might also benefit from some centralized config for e.g. default image to use for a given lang/env
+# TODO: what about just traversing up the directory tree to find the first .ddev config? that would neatly solve having a bunch of the same configs spread throughout a GOPATH hierarchy; downsides: not shareable, benefits go away if hierarchy is more heterogeneous... 
