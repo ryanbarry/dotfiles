@@ -5,11 +5,14 @@ set -ex
 if [[ -f $PWD/.ddev ]]; then
     source $PWD/.ddev
     # canonicalize path (it's cool to let the user use relative paths)
-    mount_root=$(python -c "import os,sys; print os.path.realpath(sys.argv[1])" ${mount_root})
+    # also, use $PWD by default -- common case is that user just wants the current directory
+    mount_root=$(python -c "import os,sys; print os.path.realpath(sys.argv[1])" ${mount_root:-$PWD})
+    # TODO: validate this to be an absolute path
+    mount_target="${mount_target:-/code}"
 fi
 
-if [[ -z ${image} || -z ${mount_root} || -z ${mount_target} ]]; then
-    echo "must set $image, $mount_root and $mount_target to use ddev"
+if [[ -z ${image} ]]; then
+    echo "must set at least image $image to use ddev"
 fi
 
 # want to get the path we'll need to cd into once inside the container, to keep continuity for the user
@@ -17,3 +20,9 @@ fi
 virtdir=$mount_target"${PWD#"$mount_root"}"
 
 exec docker run --interactive --tty --rm --volume "${mount_root}:${mount_target}" --workdir "${virtdir}" "${image}"
+
+# TODO: move config file format to something more flexible -- maybe toml?
+# TODO: allow multiple mounts to be defined, each with their own "root" and target
+      # this is useful for e.g. mounting aws/gcp cli configs/credentials into a container
+# TODO: maybe implement support for defaults or hierarchical configs; e.g. so i don't have to specify the same mount_root and mount_target in every go project on my machine -- but also, how can these be shared? the current model relies upon my local machine's dir layout
+# TODO: auto-detection of language/env used in current dir might be cool, and might also benefit from some centralized config for e.g. default image to use for a given lang/env
