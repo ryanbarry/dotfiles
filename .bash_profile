@@ -19,6 +19,7 @@ export LANG="en_US"
 
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 [ -d /usr/local/opt/google-cloud-sdk ] && . /usr/local/opt/google-cloud-sdk/path.bash.inc && . /usr/local/opt/google-cloud-sdk/completion.bash.inc
+[ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
 
 # Bash doesn't load its interactive initialization file if it's invoked as
 # a login shell, so do it manually.
