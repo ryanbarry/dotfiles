@@ -38,6 +38,7 @@ alias gf='git fetch'
 alias gl='git pull'
 alias gp='git push'
 alias gco='git checkout'
+alias gr='git rev-parse --show-toplevel'
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
