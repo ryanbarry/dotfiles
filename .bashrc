@@ -10,10 +10,6 @@ for file in ~/.{extra,bash_prompt,aliases,functions,profile}; do
 done
 unset file
 
-# node version manager
-NVM_INSTALL_DIR=$(brew --prefix nvm) && export NVM_DIR=~/.nvm && \
-[[ -s $NVM_INSTALL_DIR/nvm.sh ]] && source $NVM_INSTALL_DIR/nvm.sh
-
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
@@ -34,31 +30,3 @@ bind '"\033[3;5~":backward-kill-word' # now tell bash to map Ctrl-Backspace to t
 ###
 ### NOTE: this requires setup in Terminal.app (namely, adding a key setting in the profile for ctrl-backspace - by default it just sends the same code as backspace)
 ###
-
-####
-##
-##  the following came from .profile, it doesn't belong there
-##
-####
-
-#PATH=/Users/rbarry/.rbenv/bin:/Users/rbarry/.rbenv/shims:/Users/rbarry/.rvm/gems/ruby-2.0.0-p247/bin:/Users/rbarry/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/rbarry/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/rbarry/.rvm/bin:/Users/rbarry/.nvm/v0.8.26/bin:/usr/local/share/npm/bin:$PATH:/Users/rbarry/android-sdk/tools:/Users/rbarry/android-sdk/platform-tools
-
-if `which rbenv`; then
-  source "/usr/local/Cellar/rbenv/0.4.0/libexec/../completions/rbenv.bash"
-
-  rbenv rehash 2>/dev/null
-  rbenv() {
-    typeset command
-    command="$1"
-    if [ "$#" -gt 0 ]; then
-      shift
-    fi
-
-    case "$command" in
-    rehash|shell)
-      eval `rbenv "sh-$command" "$@"`;;
-    *)
-      command rbenv "$command" "$@";;
-    esac
-  }
-fi
