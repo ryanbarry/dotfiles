@@ -10,7 +10,8 @@ for file in ~/.{extra,bash_prompt,aliases,functions,profile}; do
 done
 unset file
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
+# common location for Homebrew packages to put their bash completions
+if [ "$(uname)" == "Darwin" ] && [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
