@@ -2,6 +2,15 @@
 
 set -ex
 
+# mount_root
+# mount_target
+# virtdir
+# image
+# publish_ports
+#
+# TODO: add some more...
+# env_var
+
 if [[ -f $PWD/.ddev ]]; then
     source $PWD/.ddev
     # canonicalize path (it's cool to let the user use relative paths)
@@ -19,7 +28,12 @@ fi
 # TODO: this is super naïve, using bash string "subtraction"; need more robust method to handle more cases
 virtdir=$mount_target"${PWD#"$mount_root"}"
 
-exec docker run --interactive --tty --rm --volume "${mount_root}:${mount_target}" --workdir "${virtdir}" "${image}"
+publish_ports_flags=""
+for pmap in "${publish_ports}"; do
+    publish_ports_flags="${publish_ports_flags} --publish ${pmap}"
+done
+
+exec docker run --interactive --tty --rm ${publish_ports_flags} --volume "${mount_root}:${mount_target}" --workdir "${virtdir}" "${image}"
 
 # TODO: move config file format to something more flexible -- maybe toml?
 # TODO: allow multiple mounts to be defined, each with their own "root" and target
