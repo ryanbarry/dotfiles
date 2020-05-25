@@ -38,10 +38,10 @@ function ssh-copy-id() {
 # abstract resolution of hue bridge address
 function findhue() {
   # use local network's DHCP-integrated DNS
-  # dig @10.0.1.254 philips-hue A +short
+  dig philips-hue.h.nuclearice.com A +short
 
   # use "N-UPNP", relying on bridge's connection to the Mothership
-  curl -s https://discovery.meethue.com/ | jq -r 'map(select(.id == "001788fffe155db4")) | .[].internalipaddress'
+  # curl -s https://discovery.meethue.com/ | jq -r 'map(select(.id == "001788fffe155db4")) | .[].internalipaddress'
 
   # use huectl
   # huectl addr
