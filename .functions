@@ -42,6 +42,9 @@ function findhue() {
 
   # use "N-UPNP", relying on bridge's connection to the Mothership
   curl -s https://discovery.meethue.com/ | jq -r 'map(select(.id == "001788fffe155db4")) | .[].internalipaddress'
+
+  # use huectl
+  # huectl addr
 }
 
 # control philips hue lights brightness and color temp
