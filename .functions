@@ -41,12 +41,6 @@ if [[ -x `which docker` ]]; then
   }
 fi
 
-function cgr() {
-  TL=$(git rev-parse --show-toplevel)
-  cd "${TL}"
-}
 
-function pgr() {
-  TL=$(git rev-parse --show-toplevel)
-  pushd "${TL}"
-}
+
+
