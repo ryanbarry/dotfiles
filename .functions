@@ -9,10 +9,6 @@ if [[ -a ".nvmrc" && -d "$NVM_DIR" ]]; then
   }
 fi
 
-# Create a new directory and enter it
-function md() {
-  mkdir -p "$@" && cd "$@"
-}
 
 
 # find shorthand
