@@ -16,3 +16,5 @@ function hueon() {
   curl -XPUT -d "{ \"on\": true,$CT \"bri\": $BRI }" $API_URL
   echo
 }
+
+hueon

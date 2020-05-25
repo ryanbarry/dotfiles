@@ -12,3 +12,5 @@ function findhue() {
   # use huectl
   # huectl addr
 }
+
+findhue

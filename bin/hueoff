@@ -5,3 +5,5 @@ function hueoff() {
   curl -XPUT -d "{ \"on\": false }" $API_URL
   echo
 }
+
+hueoff
