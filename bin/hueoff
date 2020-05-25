@@ -1,0 +1,7 @@
+#!/bin/sh
+
+function hueoff() {
+  API_URL="http://$(findhue)/api/newdeveloper/groups/1/action"
+  curl -XPUT -d "{ \"on\": false }" $API_URL
+  echo
+}

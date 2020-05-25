@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# control philips hue lights brightness and color temp
+function hueon() {
+  if [ $# -lt 1 ]; then
+    BRI=120
+  else
+    BRI=$1
+  fi
+  if [ $# -lt 2 ]; then
+    CT=""
+  else
+    CT=" \"ct\": $(( 1000000/$2 )),"
+  fi
+  API_URL="http://$(findhue)/api/newdeveloper/groups/1/action"
+  curl -XPUT -d "{ \"on\": true,$CT \"bri\": $BRI }" $API_URL
+  echo
+}
