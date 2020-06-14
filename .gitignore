@@ -1,0 +1,12 @@
+# start by ignoring everything at the top level
+# (since we're expecting to be checked out directly in your $HOME dir)
+/*
+
+# specifically list the paths to track
+!/.bash*
+!/.spacemacs
+!/.gitignore
+!/bin
+
+# there will likely be things you want to add to these paths on specific hosts,
+# consider using the .git/info/exclude file for ignoring those per-machine
