@@ -3,8 +3,7 @@
 # abstract resolution of hue bridge address
 function findhue() {
   # rely on local network's DHCP-integrated DNS
-  # (but what about when i'm on a vpn?)
-  dig philips-hue.h.nuclearice.com A +short
+  dig philips-hue A +search +short
 
   # use "N-UPNP", relying on bridge's connection to the Mothership
   # curl -s https://discovery.meethue.com/ | jq -r 'map(select(.id == "001788fffe155db4")) | .[].internalipaddress'
