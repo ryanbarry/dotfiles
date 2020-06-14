@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+XHSHDIR=/usr/local/opt/xhyve/share/xhyve
+
+if [ -z "${KERNEL}" ]; then
+    KERNEL=${XHSHDIR}/test/vmlinuz
+fi
+if [ -z "${INITRD}" ]; then
+    INITRD=${XHSHDIR}/test/initrd.gz
+fi
+if [ -z "${CMDLINE}" ]; then
+    CMDLINE="earlyprintk=serial console=ttyS0"
+fi
+if [ -z "${MEM}" ]; then
+    MEM="-m 1G"
+fi
+#SMP="-c 2"
+if [ -z "${NET}" ]; then
+    NET="-s 2:0,virtio-net"
+fi
+#IMG_CD="-s 3,ahci-cd,/somepath/somefile.iso"
+#IMG_HDD="-s 4,virtio-blk,/somepath/somefile.img"
+if [ -z "${PCI_DEV}" ]; then
+    PCI_DEV="-s 0:0,hostbridge -s 31,lpc"
+fi
+if [ -z "${LPC_DEV}" ]; then
+    LPC_DEV="-l com1,stdio"
+fi
+if [ -z "${ACPI}" ]; then
+    ACPI="-A"
+fi
+#UUID="-U deadbeef-dead-dead-dead-deaddeafbeef"
+
+exec xhyve ${ACPI} ${MEM} ${SMP} ${PCI_DEV} ${LPC_DEV} ${NET} ${FB} ${IMG_CD} ${IMG_HDD} ${UUID} -f kexec,${KERNEL},${INITRD},"${CMDLINE}"
