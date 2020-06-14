@@ -1,8 +1,11 @@
+# there will likely be things you want to add to these paths on specific hosts,
+# consider using the .git/info/exclude file for ignoring those per-machine
+
 # start by ignoring everything at the top level
 # (since we're expecting to be checked out directly in your $HOME dir)
 /*
 
-# common "dust" to universally ignore
+# common "dust" to universally ignore, wherever it's found in the hierarchy
 .DS_Store
 
 # specifically list the paths to track
@@ -15,5 +18,8 @@
 /.bash_history
 /.bash_sessions/
 
-# there will likely be things you want to add to these paths on specific hosts,
-# consider using the .git/info/exclude file for ignoring those per-machine
+# now, same strategy as above, but repeated for specific subdirectories
+
+!/.config
+/.config/*
+!/.config/fish
