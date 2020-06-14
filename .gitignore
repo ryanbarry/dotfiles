@@ -2,11 +2,18 @@
 # (since we're expecting to be checked out directly in your $HOME dir)
 /*
 
+# common "dust" to universally ignore
+.DS_Store
+
 # specifically list the paths to track
 !/.bash*
 !/.spacemacs
 !/.gitignore
 !/bin
+
+# further specify paths to ignore that would otherwise match the negatives above
+/.bash_history
+/.bash_sessions/
 
 # there will likely be things you want to add to these paths on specific hosts,
 # consider using the .git/info/exclude file for ignoring those per-machine
