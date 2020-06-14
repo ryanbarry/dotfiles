@@ -1,0 +1,8 @@
+#!/bin/sh
+
+function cdg() {
+  TL=$(git rev-parse --show-toplevel)
+  cd "${TL}"
+}
+
+cdg

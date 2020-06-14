@@ -1,0 +1,8 @@
+#!/bin/sh
+
+function pdg() {
+  TL=$(git rev-parse --show-toplevel)
+  pushd "${TL}"
+}
+
+pdg
