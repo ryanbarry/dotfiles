@@ -1,0 +1,5 @@
+#!/bin/bash
+
+CNF_DIR=${CNF_DIR:-$HOME/.aws}
+
+docker run --rm -i -v ${CNF_DIR}:/root/.aws ryanbarry/awscli aws $*
