@@ -17,4 +17,4 @@ function hueon() {
   echo
 }
 
-hueon
+hueon "$@"
