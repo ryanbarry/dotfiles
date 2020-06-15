@@ -7,3 +7,5 @@ end
 prependpath ~/.cargo/bin
 prependpath ~/gocode/bin
 prependpath ~/bin
+
+set -x EDITOR emacsclient
