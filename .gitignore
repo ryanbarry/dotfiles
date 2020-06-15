@@ -9,6 +9,7 @@
 .DS_Store
 
 # specifically list the paths to track
+!/.alacritty.yml
 !/.bash*
 !/.spacemacs
 !/.gitignore
