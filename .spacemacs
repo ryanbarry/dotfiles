@@ -545,14 +545,11 @@ See the header of this file for more information."
 )
 
 (defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init', before layer configuration
-executes.
- This function is mostly useful for variables that need to be set
-before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
-  (setq mac-option-modifier 'meta)
-	(setq mac-command-modifier 'none)
+  "Initialization for user code:
+This function is called immediately after `dotspacemacs/init', before layer
+configuration.
+It is mostly for variables that should be set before packages are loaded.
+If you are unsure, try setting them in `dotspacemacs/user-config' first."
   )
 
 
@@ -573,6 +570,9 @@ before packages are loaded."
   (require 'notifications) ;; allows sending desktop notifications via dbus
   (require 'async) ;; allows to fork off processes to do background work
   (require 'org-mobile) ;; needed to setup the automatic push functions (at least for the after-save-hook to look through org-mobile-files-alist)
+  (setq mac-option-modifier 'meta)
+  (setq mac-command-modifier 'none)
+  (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
   (spacemacs/set-leader-keys "oc" 'org-capture)
   (spacemacs/set-leader-keys "ol" 'org-store-link)
   (spacemacs/set-leader-keys "oa" 'org-agenda)
