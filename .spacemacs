@@ -590,6 +590,21 @@ before packages are loaded."
   (setq org-refile-targets '((org-agenda-files . (:maxlevel . 2))))
 
   (add-hook 'org-capture-prepare-finalize-hook 'org-id-get-create)
+
+  (setq org-capture-templates
+        '(("n" "iNterruption" entry (file+olp+datetree "journal.org")
+           "* %? %^G\n %a\n")
+          ("q" "templates for quick get-it-out-of-my-head entries")
+          ("qt" "ToDo" entry (file "")
+           "* TODO %? %^G\n %U\n %i")
+          ("qj" "Journal" entry (file+olp+datetree "journal.org")
+           "* %? %^G\nEntered on %U\n %i")
+          ("t" "capture related to my current task")
+          ("tt" "ToDo w/ link back to location where called" entry (file "")
+           "* TODO %?\n %U\n %i\n %a")
+          ("tj" "Journal w/ link back to location where called" entry (file+olp+datetree "journal.org")
+           "* %?\nEntered on %U\n %i\n %a")))
+
   (defun notify-org-push-done (result)
     (notifications-notify :title "Org-mobile (background)" :body (format "org-mobile-push: %s" result)))
   ;;(add-hook 'org-mobile-post-push-hook (lambda () (notifications-notify :title "Org-mobile" :body  "Push complete")))
