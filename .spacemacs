@@ -34,6 +34,9 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(
      typescript
+     ruby
+     python
+     nginx
      sql
      markdown
      javascript
@@ -71,6 +74,8 @@ This function should only modify configuration layer settings."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       ag
+                                      terraform-mode
+                                      protobuf-mode
                                       )
 
 
@@ -260,7 +265,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Fira Code"
                                :size 13
                                :weight normal
                                :width normal
@@ -646,7 +651,6 @@ before packages are loaded."
                 )))
 )
 
-
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (defun dotspacemacs/emacs-custom-settings ()
@@ -659,7 +663,18 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bookmark-save-flag 1)
+ '(initial-scratch-message nil)
+ '(gofmt-command "~/go/bin/goimports")
+ '(js-indent-level 2)
+ '(json-reformat:indent-width 2)
+ '(magit-revision-show-gravatars (quote ("^Author:     " . "^Commit:     ")))
+ '(message-log-max 16384)
+ '(org-image-actual-width nil)
+ '(global-page-break-lines-mode t)
+ '(rust-format-on-save t)
  )
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -18,6 +18,10 @@ export LANG="en_US"
 [ -d /usr/local/opt/google-cloud-sdk ] && . /usr/local/opt/google-cloud-sdk/path.bash.inc && . /usr/local/opt/google-cloud-sdk/completion.bash.inc
 [ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
 
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # Bash doesn't load its interactive initialization file if it's invoked as
 # a login shell, so do it manually.
 case $- in
