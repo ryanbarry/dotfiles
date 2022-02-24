@@ -595,13 +595,13 @@ before packages are loaded."
   (setq org-default-notes-file (concat org-directory "/captures.org"))
   (setq org-todo-keywords '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
   (setq org-log-into-drawer 'LOGBOOK)
-  (setq org-agenda-files (list org-directory))
   ;; TODO: is system-name a better variable to depend upon?
   ;; work laptop gets system-name "MBP-RBAR.h.nuclearice.com" at home, is it the same when on another network?
   (cond ((string-equal system-type "darwin")
          (setq org-mobile-directory "/Volumes/myfiles.fastmail.com/org"))
         ((string-equal system-type "gnu/linux")
          (setq org-mobile-directory "~/fastmailfiles/org/")))
+  (setq org-agenda-files (-remove (lambda (str) (string-match-p "from-mobile" str)) (directory-files org-directory t "^[^.].*\.org$")))
   (setq org-refile-targets '((org-agenda-files . (:maxlevel . 2))))
 
   (add-hook 'org-capture-prepare-finalize-hook 'org-id-get-create)
