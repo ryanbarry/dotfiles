@@ -632,7 +632,12 @@ before packages are loaded."
            "* TODO %? %^G\n DEADLINE: %^t\n%U\n %i")))
 
   (defun notify-org-push-done (result)
-    (notifications-notify :title "Org-mobile (background)" :body (format "org-mobile-push: %s" result)))
+    (cond ((string-equal system-type "gnu/linux")
+           (notifications-notify :title "Org-mobile (background)" :body (format "org-mobile-push: %s" result)))
+          ((string-equal system-type "darwin")
+           (ns-do-applescript (concat "display notification \""
+                                      (format "org-mobile-push: %s" result)
+                                      "\" with title \"Org-mobile (background)\"")))))
   ;;(add-hook 'org-mobile-post-push-hook (lambda () (notifications-notify :title "Org-mobile" :body  "Push complete")))
 
   (defun fork-org-push-mobile ()
