@@ -15,6 +15,7 @@ export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
 
 #export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="$HOME/bin:$PATH"
 [ -d /usr/local/opt/google-cloud-sdk ] && . /usr/local/opt/google-cloud-sdk/path.bash.inc && . /usr/local/opt/google-cloud-sdk/completion.bash.inc
 [ -f $HOME/.cargo/env ] && . $HOME/.cargo/env
 
