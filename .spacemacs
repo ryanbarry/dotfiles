@@ -671,7 +671,32 @@ before packages are loaded."
                   (if (string= (expand-file-name (car file)) (buffer-file-name))
                       (org-mobile-push-with-delay 10)))
                 )))
+
+  ;; update a todo state with some time other than now
+  ;; originally from: https://emacs.stackexchange.com/a/63809
+  (defun org-todo-with-date (&optional arg)
+    (interactive "P")
+    (cl-letf* ((org-read-date-prefer-future nil)
+               (my-current-time (org-read-date t t nil "when:" nil nil nil))
+               ((symbol-function 'current-time)
+                #'(lambda () my-current-time))
+               ((symbol-function 'org-today)
+                #'(lambda () (time-to-days my-current-time)))
+               ((symbol-function 'org-current-effective-time)
+                #'(lambda () my-current-time))
+
+               (super-org-entry-put (symbol-function 'org-entry-put))
+               ((symbol-function 'org-entry-put)
+                #'(lambda (pom property value)
+                    (print property)
+                    (if (equal property "LAST_REPEAT")
+                        (let ((my-value (format-time-string (org-time-stamp-format t t) my-current-time)))
+                          (funcall super-org-entry-put pom property my-value))
+                      (funcall super-org-entry-put pom property value)
+                      ))))
+      (if (eq major-mode 'org-agenda-mode) (org-agenda-todo arg) (org-todo arg))))
 )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
