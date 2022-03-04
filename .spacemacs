@@ -629,7 +629,9 @@ before packages are loaded."
           ("wo" "todo On" entry (file+olp "work.org" "tasks")
            "* TODO %? %^G\n SCHEDULED: %^t\n %U\n %i")
           ("wb" "todo By" entry (file+olp "work.org" "tasks")
-           "* TODO %? %^G\n DEADLINE: %^t\n%U\n %i")))
+           "* TODO %? %^G\n DEADLINE: %^t\n%U\n %i")
+          ("wj" "Journal" entry (file+olp+datetree "work.org" "journal")
+           "* %? %^G\nEntered on %U\n %i")))
 
   (defun notify-org-push-done (result)
     (cond ((string-equal system-type "gnu/linux")
