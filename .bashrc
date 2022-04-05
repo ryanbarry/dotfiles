@@ -11,7 +11,7 @@ done
 unset file
 
 # common location for Homebrew packages to put their bash completions
-if [ "$(uname)" == "Darwin" ] && [ command -v brew >/dev/null ] && [ -f `brew --prefix`/etc/bash_completion ]; then
+if [ "$(uname)" == "Darwin" ] && command -v brew >/dev/null && [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
