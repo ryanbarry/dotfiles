@@ -539,6 +539,18 @@ key_bindings:
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
+  - { key: Left,        mods: Alt,             chars: "\x1Bb"           }
+  - { key: Left,        mods: Alt|Shift,       chars: "\x1B\x1B[D"      }
+  - { key: Right,       mods: Alt,             chars: "\x1Bf"           }
+  - { key: Right,       mods: Alt|Shift,       chars: "\x1B\x1B[C"      }
+  - { key: Down,        mods: Alt,             chars: "\x1B\x1B[B"      }
+  - { key: Down,        mods: Alt|Shift,       chars: "\x1B\x1B[B"      }
+  - { key: Up,          mods: Alt,             chars: "\x1B\x1B[A"      }
+  - { key: Up,          mods: Alt|Shift,       chars: "\x1B\x1B[A"      }
+  - { key: F,           mods: Alt,             chars: "\x1Bf"           }
+  - { key: F,           mods: Alt|Shift,       chars: "\x1BF"           }
+  - { key: B,           mods: Alt,             chars: "\x1Bb"           }
+  - { key: B,           mods: Alt|Shift,       chars: "\x1BB"           }
   #- { key: Key0,   mods: Command,         action: ResetFontSize    }
   #- { key: Equals, mods: Command,         action: IncreaseFontSize }
   #- { key: Add,    mods: Command,         action: IncreaseFontSize }
