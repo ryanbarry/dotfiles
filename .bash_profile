@@ -1,6 +1,6 @@
 # purpose: exports & loading more when actually interactive
 
-export AWS_CONFIG_FILE=~/.boto
+[ -e ~/.boto ] && export AWS_CONFIG_FILE=~/.boto
 
 # Make emacs-in-a-new-frame the default editor
 export EDITOR='emacsclient'
