@@ -30,3 +30,12 @@ case $- in
            source $HOME/.bashrc
          fi
 esac
+
+# homebrew only supports installation a few well-defined locations, and i don't use it on linux
+# https://github.com/Homebrew/install/blob/87357e2b3e92d6662f393090b5fc97316e072543/install.sh
+# installation paths can be found on lines 124 & 128, lines 1010-1011 generate eval cmd's used below
+if [ -d /opt/homebrew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -d /usr/local/Homebrew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
