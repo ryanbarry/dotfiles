@@ -577,6 +577,12 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+  ;; if skipping user-config at startup is desirable, start emacs like so:
+  ;; $ emacs -q --eval '(setq -no-dotspacemacs-user-config t)' --load ~/.emacs.d/init.el
+  ;; this can be useful if there's a need to reinstall packages without having loaded them already (e.g. org)
+  (if (bound-and-true-p -no-dotspacemacs-user-config) (error "skipping dotspacemacs/user-config as requested"))
+
   (require 'notifications) ;; allows sending desktop notifications via dbus
   (require 'async) ;; allows to fork off processes to do background work
   (require 'org-mobile) ;; needed to setup the automatic push functions (at least for the after-save-hook to look through org-mobile-files-alist)
